@@ -5,9 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Code-Quiz/assets/css/style.css">
-    <title>Document</title>
+    <script defer src="./assets/js/script.js"></script>
+    <title>Code Quiz</title>
 </head>
 <body>
+    <!-- score element for quiz -->
+    <div class="top-variables">
+        <div class="score">
+            <a href="highscores.html">View Highscores</a>
+        </div>
+
+        <!-- timer for quiz -->
+        <div class="time">
+            Time: <span id="time">0</span>
+        </div>
+    </div>
+    <!-- start screen for quiz -->
+    <div class="container">
+        <div id="start" class="start-screen">
+            <h1>Coding Quiz</h1>
+            <p>
+                Welcome to the coding quiz! Try to answer as many of the 
+                following questions as possible before the timer runs out. 
+                Remember all incorrect answers will result in a 10 second penalty
+                on the timer! Have fun!
+            </p>
+        </div>
+        <button id="start-button">Begin Quiz!</button>
+    </div>
+    <!-- start screen end -->
+
+    <!-- questions start -->
+    <div id="questions" class="hide">
+        <h2 id="question-title"></h2>
+        <div id="answers" class="answers"></div>
+    </div>
+    <!-- questions section end -->
+
+    <!-- end screen start -->
+    <div id="end-screen" class="hide">
+        <h2>You Finished!</h2>
+        <p>Your score is 
+            <span id="final-score"></span>
+        </p>
+        <p>Put your initials here: 
+            <input type="text" id="initials" max="5"/> 
+            <button id="submit">Submit</button>
+        </p>
+    </div>
+    <!-- end screen section end -->
+
+    
     <script src="../Code-Quiz/assets/js/script.js"></script>
 </body>
 </html>

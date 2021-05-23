@@ -1,5 +1,6 @@
-* {
-    margin: 0;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 :root {
@@ -10,5 +11,87 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #f2f2f2;
+    margin: 200px 0 0 0;
+}
+
+/* starting header variables styling */
+.top-variables {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    max-width: 100%;
+    padding: 15px;
+    color: var(--text-color);
+}
+
+.score {
+border: solid var(--tertiary-color);
+padding: 5px;
+border-radius: 10px;
+background-color: var(--secondary-color);
+box-shadow: 0 0 2px 1px;
+}
+
+.score a {
+    text-decoration: none;
+    color: var(--text-color);
+    text-shadow: 1px 1px var(--tertiary-color);
+}
+
+.time {
+border: solid var(--tertiary-color);
+padding: 5px;
+border-radius: 10px;
+background-color: var(--secondary-color);
+box-shadow: 0 0 2px 1px;
+text-shadow: 1px 1px var(--tertiary-color);
+}
+/* ending heading variables styles */
+
+/* starting start screen section */
+.container {
+   width: 800px;
+   max-width: 100%;
+   display: flex;
+   flex-direction: column;
+   background-color: var(--primary-color);
+   color: var(--text-color);
+   border: solid 5px var(--tertiary-color);
+   border-radius: 5px;
+   box-shadow: 0 0 2px 1px;
+   align-items: center;
+}
+
+.start-screen {
+    align-content: center;
+    margin: 0px 10px 10px 10px;
+}
+
+.container h1 {
+    text-align: center;
+    margin: 20px 0px 10px 0px;
+    max-width: 100%;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.container p {
+    text-align: center;
+    margin: 5px 5px 30px 5px;
+    max-width: 100%;
+    text-shadow: 1px 1px var(--tertiary-color);
+}
+
+.container button {
+    font-size: 35px;
+    margin: 0px 0px 25px 0px;
+    border: solid var(--tertiary-color);
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
 }
