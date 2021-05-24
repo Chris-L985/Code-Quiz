@@ -4,6 +4,7 @@ const startScreenElements = document.getElementById('start-cont')
 const questionContainerElement = document.getElementById('question-wrap-cont')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answers-buttons')
+const endScreen = document.getElementById('end-screen')
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -24,13 +25,20 @@ function startGame() {
 }
 // end start game
 
+// end game function
+function endGame() {
+    clearStatusClass(document.body)
+    endScreen.classList.remove('hide')
+    questionContainerElement.classList.add('hide')
+}
+
 // randomize and set questions
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
-
+// return text to questions
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -46,6 +54,7 @@ function showQuestion(question) {
 
 }
 
+// reset bg color after every clicking next 
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -55,6 +64,7 @@ function resetState() {
     }
 }
 
+// allows answer to be selected and cycles questions
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -65,10 +75,11 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
-        startButton.innerText = ''
+        endGame();
     }
 }
 
+// determines whether answer is correct or not changes background color
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -78,6 +89,7 @@ function setStatusClass(element, correct) {
     }
 }
 
+// resets background color before next question
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')

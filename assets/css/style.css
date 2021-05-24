@@ -163,6 +163,45 @@ body.wrong {
     outline: none;
 }
 
+/* end game screen styling */
+.end-screen {
+    width: 800px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: solid 5px var(--tertiary-color);
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px;
+    align-items: center;  
+    text-shadow: 1px 1px var(--tertiary-color);
+}
+
+.end-screen h2 {
+    text-align: center;
+    margin: 20px 0px 10px 0px;
+    max-width: 100%;
+    text-shadow: 2px 2px #ff0000; 
+}
+
+/* classes for highscore page */
+.scores {
+    background-color: whitesmoke;
+    border: solid 2px black;
+    border-radius: 6px;
+    width: 425px;
+    height: 30vh;
+    padding: 10px;
+    margin: 10px;
+    align-content: center;
+}
+
+.controls button a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
 /* utility */
 .hide {
     display: none;
