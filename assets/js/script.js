@@ -6,7 +6,20 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answers-buttons')
 const endScreen = document.getElementById('end-screen')
 
+var submitButton = document.querySelector('#submit')
+var userInitials = document.querySelector('#initials')
+
 let shuffledQuestions, currentQuestionIndex
+
+function renderLastRegistered() {
+    var playerInitials = localStorage.getItem('initials');
+
+    if (playerInitials === null) {
+        return;
+    }
+
+    userInitials.textContent = playerInitials
+}
 
 // start game
 startButton.addEventListener('click', startGame);
@@ -31,6 +44,43 @@ function endGame() {
     endScreen.classList.remove('hide')
     questionContainerElement.classList.add('hide')
 }
+
+// timer code
+document.addEventListener('DOMContentLoaded', () => {
+    const timeLeftDisplay = document.querySelector('#time')
+    const startBtn = document.querySelector('#start-button')
+    let  timeLeft = 60
+
+    function countDown() {
+        setInterval(function(){
+            if(timeLeft <= 0 ) {
+                clearInterval(timeLeft = 0)
+            }
+
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -=1
+        }, 1000)
+    }
+    startBtn.addEventListener('click', countDown)
+})
+
+// enter initials to highscore
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var userInit = document.querySelector('#inital').nodeValue;
+
+    if (userInit === '') {
+        displayMessage('error', 'Initials cannot be blank')
+    } else {
+        displayMessage('success', 'Registered successfully')
+
+        // save initials
+        localStorage.setItem('initials', userInit)
+
+        renderLastRegistered();
+    }
+})
 
 // randomize and set questions
 function setNextQuestion() {
