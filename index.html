@@ -21,8 +21,8 @@
         </div>
     </div>
     <!-- start screen for quiz -->
-    <div class="container">
-        <div id="start" class="start-screen">
+    <div id="start-cont" class="container" >
+        <div class="start-screen">
             <h1>Coding Quiz</h1>
             <p>
                 Welcome to the coding quiz! Try to answer as many of the 
@@ -36,9 +36,19 @@
     <!-- start screen end -->
 
     <!-- questions start -->
-    <div id="questions" class="hide">
-        <h2 id="question-title"></h2>
-        <div id="answers" class="answers"></div>
+    <div id="question-wrap-cont" class="question-wrap hide">
+        <div id="question-container">
+            <div id="question">Question</div>
+            <div id="answers-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="next-button" class="next-btn hide">Next!</button>
+        </div>
     </div>
     <!-- questions section end -->
 
