@@ -15,6 +15,7 @@ function renderLastRegistered() {
     var playerInitials = localStorage.getItem('initials');
 
     if (playerInitials === null) {
+        window.alert = "Please enter your initials."
         return;
     }
 
@@ -48,7 +49,6 @@ function endGame() {
 // timer code
 document.addEventListener('DOMContentLoaded', () => {
     const timeLeftDisplay = document.querySelector('#time')
-    const startBtn = document.querySelector('#start-button')
     let  timeLeft = 60
 
     function countDown() {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timeLeft -=1
         }, 1000)
     }
-    startBtn.addEventListener('click', countDown)
+    startButton.addEventListener('click', countDown)
 })
 
 // enter initials to highscore
