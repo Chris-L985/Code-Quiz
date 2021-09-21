@@ -1,15 +1,53 @@
-const startButton = document.getElementById('start-button')
-const nextButton = document.getElementById('next-button')
-const startScreenElements = document.getElementById('start-cont')
-const questionContainerElement = document.getElementById('question-wrap-cont')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answers-buttons')
-const endScreen = document.getElementById('end-screen')
+const startButton = document.getElementById('start-button');
+const nextButton = document.getElementById('next-button');
+const startScreenElements = document.getElementById('start-cont');
+const questionContainerElement = document.getElementById('question-wrap-cont');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answers-buttons');
+const endScreen = document.getElementById('end-screen');
 
-var submitButton = document.querySelector('#submit')
-var userInitials = document.querySelector('#initials')
+var submitButton = document.querySelector('#submit');
+var userInitials = document.querySelector('#initials');
 
 let shuffledQuestions, currentQuestionIndex
+
+// let interval;
+
+// function timer(action) {
+//     let isStop = action === "stop";
+//     let isStart = action === "start";
+
+//     if (isStart) {
+//         interval = (function () {
+//             let timerValue = parseInt($("#time-va").text());
+//             if (timerValue > 0) {
+//                 $("#time-va").text(timerValue - 1);
+//             } else {
+//                 timer("stop");
+//             }
+//         }, 1000);
+//     } else if (isStop) {
+//         clearInterval(timeInterval);
+//     }
+// }
+
+// timer code
+document.addEventListener('DOMContentLoaded', () => {
+    const timeLeftDisplay = document.querySelector('#timer')
+   let  timeLeft = 60
+
+    function countDown() {
+        setInterval(function(){
+            if(timeLeft <= 0 ) {
+                clearInterval(timeLeft = 0)
+            }
+
+            timeLeftDisplay.innerHTML = timeLeft
+            timeLeft -=1
+        }, 1000)
+    }
+    startButton.addEventListener('click', countDown)
+})
 
 function renderLastRegistered() {
     var playerInitials = localStorage.getItem('initials');
@@ -46,23 +84,11 @@ function endGame() {
     questionContainerElement.classList.add('hide')
 }
 
-// timer code
-document.addEventListener('DOMContentLoaded', () => {
-    const timeLeftDisplay = document.querySelector('#time')
-    let  timeLeft = 60
-
-    function countDown() {
-        setInterval(function(){
-            if(timeLeft <= 0 ) {
-                clearInterval(timeLeft = 0)
-            }
-
-            timeLeftDisplay.innerHTML = timeLeft
-            timeLeft -=1
-        }, 1000)
-    }
-    startButton.addEventListener('click', countDown)
-})
+function showHighscorePage() {
+    window.location.href="highscores.html";
+    timer("stop");
+    $('#timer').text(60);
+}
 
 // enter initials to highscore
 submitButton.addEventListener('click', function(event) {
@@ -129,6 +155,13 @@ function selectAnswer(e) {
     }
 }
 
+// Highscore placeholder
+// let placeHolderScores = 
+//     JSON.parse(localStorage.getItem('highscores')) ?? [];
+// let olEl = placeHolderScores.map(function(highscore, index) {
+//     return `<li>${highscore.initials} - ${highscore.score}</li>`;
+// });
+
 // determines whether answer is correct or not changes background color
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -191,3 +224,8 @@ const question = [
         ]
     }
 ]
+
+// Highscore code 
+
+
+// sumbitting highscore input to highscore page
