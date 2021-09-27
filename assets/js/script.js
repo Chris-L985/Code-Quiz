@@ -11,41 +11,11 @@ var userInitials = document.querySelector('#initials');
 
 let shuffledQuestions, currentQuestionIndex
 
-// let interval;
-
-// function timer(action) {
-//     let isStop = action === "stop";
-//     let isStart = action === "start";
-
-//     if (isStart) {
-//         interval = (function () {
-//             let timerValue = parseInt($("#time-va").text());
-//             if (timerValue > 0) {
-//                 $("#time-va").text(timerValue - 1);
-//             } else {
-//                 timer("stop");
-//             }
-//         }, 1000);
-//     } else if (isStop) {
-//         clearInterval(timeInterval);
-//     }
-// }
-
 // timer code
 $(document).ready(() => {
     const timeLeftDisplay = document.querySelector('#timer')
     let  timeLeft = 60
  
-    // function countDown() {
-    //     setInterval(function(){
-    //         if(timeLeft <= 0 ) {
-    //             clearInterval(timeLeft = 0)
-    //         }
- 
-    //         timeLeftDisplay.innerHTML = timeLeft
-    //         timeLeft -=1
-    //     }, 1000)
-    // }
     let count;
 
     const countDown = (action) => {
@@ -68,17 +38,6 @@ $(document).ready(() => {
 
     startButton.addEventListener('click', countDown("start"));
 
-    function renderLastRegistered() {
-        var playerInitials = localStorage.getItem('initials');
-    
-        if (playerInitials === null) {
-            window.alert = "Please enter your initials."
-            return;
-        }
-    
-        userInitials.textContent = playerInitials
-    }
-    
     // start game
     startButton.addEventListener('click', startGame);
     nextButton.addEventListener('click', () => {
@@ -108,27 +67,35 @@ $(document).ready(() => {
     
     function showHighscorePage() {
         window.location.href="highscores.html";
-        timer("stop");
-        $('#timer').text(60);
-    }
+    };
+
+    const localStorageUtility = (action, value) => {
+        if (action === 'set') {
+            const highscores = JSON.parse(localStorage.getItem('highscores') ?? "[]");
+            highscores.push(value);
+            localStorage.setItem('highscores', JSON.stringify(highscores));
+        } else if (action === 'get') {
+            return JSON.parse(localStorage.getItem('highscores') ?? "[]");
+        }
+    };
     
     // enter initials to highscore
     submitButton.addEventListener('click', function(event) {
         event.preventDefault();
     
-        var userInit = document.querySelector('#inital').nodeValue;
+        var userInit = $('#initials').val();
+        var userTime = $('#final-score').text();
     
         if (userInit === '') {
-            displayMessage('error', 'Initials cannot be blank')
+            alert('error', 'Initials cannot be blank');
         } else {
-            displayMessage('success', 'Registered successfully')
+            alert('success', 'Registered successfully');
     
-            // save initials
-            localStorage.setItem('initials', userInit)
-    
-            renderLastRegistered();
+            const prettyValue = `${userInit} - ${userTime}`;
+            localStorageUtility("set", prettyValue);
+            showHighscorePage();
         }
-    })
+    });
     
     // randomize and set questions
     function setNextQuestion() {

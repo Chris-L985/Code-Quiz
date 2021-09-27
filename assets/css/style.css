@@ -68,6 +68,10 @@ text-shadow: 1px 1px var(--tertiary-color);
    align-items: center;
 }
 
+.hs-text {
+    color: #030e12;
+}
+
 .start-screen {
     align-content: center;
     margin: 0px 10px 10px 10px;
